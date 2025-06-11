@@ -2,7 +2,13 @@ const express = require("express");
 const router = express.Router();
 const Expense = require("../models/expense");
 
-//create
+//Get all
+router.get("/", async (req, res) => {
+  const expense = await Expense.find();
+  res.send(expense);
+});
+
+//Create
 router.post("/", async (req, res) => {
   try {
     const expense = new Expense(req.body);
