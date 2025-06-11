@@ -40,4 +40,12 @@ router.put("/:id", async (req, res) => {
   }
 });
 
+//Delete
+
+router.delete("/:id", async (req, res) => {
+  const expense = await Expense.findByIdAndDelete(req.params.id);
+  if (!expense) return res.status(404).send("Entry not found ");
+  res.send(expense);
+});
+
 module.exports = router;
