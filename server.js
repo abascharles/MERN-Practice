@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const expenseRoutes = require("./routes/expenseRoutes");
+const expenseRoutes = require("./routes/expenseRoutes.js");
 
 //Create express server
 const app = express();
@@ -11,11 +11,10 @@ const uri = "mongodb://localhost:27017/expensedb";
 const port = 3000;
 
 //Mongo db connection
-
 mongoose
-  .connect(uri)
-  .then(() => console.log("Connected to mongodb sucessfully"))
-  .then((error) => console.error("Failed to connect to mongo db", err));
+  .connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log("Connected to MongoDB sucessfully"))
+  .catch((error) => console.error("Failed to connect to MongoDB", error));
 
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
