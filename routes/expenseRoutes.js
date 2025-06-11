@@ -2,9 +2,16 @@ const express = require("express");
 const router = express.Router();
 const Expense = require("../models/expense");
 
-//Get all
+//Read all
 router.get("/", async (req, res) => {
   const expense = await Expense.find();
+  res.send(expense);
+});
+
+//Read One
+router.get("/:id", async (req, res) => {
+  const expense = await Expense.findById(req.params.id);
+  if (!expense) return res.status(404).send("Entry not found");
   res.send(expense);
 });
 
