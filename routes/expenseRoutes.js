@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const expense = require("../models/expense");
+const Expense = require("../models/expense");
 
 //create
-router.post("/expense", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
-    const expens = new expense(req.body);
-    await expens.save();
-    res.status(200).send(expens);
+    const expense = new Expense(req.body);
+    await expense.save();
+    res.status(200).send(expense);
   } catch (error) {
     res.status(400).send(error);
   }

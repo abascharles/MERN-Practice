@@ -12,4 +12,4 @@ const expenseSchema = new mongoose.Schema({
   isRecurring: { type: Boolean, default: false },
 });
 
-module.exports = mongoose.model("expense", expenseSchema);
+module.exports = mongoose.model("Expense", expenseSchema);
