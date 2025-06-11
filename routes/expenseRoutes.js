@@ -26,4 +26,18 @@ router.post("/", async (req, res) => {
   }
 });
 
+//Update
+router.put("/:id", async (req, res) => {
+  try {
+    const expense = await Expense.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+    if (!expense) return res.status(404).send("Entry not found ");
+    res.status(200).send(expense);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
 module.exports = router;
