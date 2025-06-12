@@ -8,6 +8,32 @@ router.get("/", async (req, res) => {
   res.send(expense);
 });
 
+// Get total expenses by category (aggregation)
+router.get("/total-by-category", async (req, res) => {
+  try {
+    const totalsByCategory = await Expense.aggregate([
+      {
+        $group: {
+          _id: "$category",
+          totalAmount: { $sum: "$amount" },
+          count: { $sum: 1 },
+        },
+      },
+      {
+        $sort: { totalAmount: -1 },
+      },
+    ]);
+
+    res.status(200).json({ success: true, data: totalsByCategory });
+  } catch (error) {
+    res.status(500).json({
+      succses: false,
+      message: "Error fetching category totals",
+      error: error.message,
+    });
+  }
+});
+
 //Read One
 router.get("/:id", async (req, res) => {
   const expense = await Expense.findById(req.params.id);
@@ -46,31 +72,6 @@ router.delete("/:id", async (req, res) => {
   const expense = await Expense.findByIdAndDelete(req.params.id);
   if (!expense) return res.status(404).send("Entry not found ");
   res.send(expense);
-});
-
-// Get total expenses by category (aggregation)
-router.get("/total-by-category", async (req, res) => {
-  try {
-    const totalsByCategory = await Expense.aggregate([
-      {
-        $group: {
-          _id: "$categorty",
-          totalAmount: { $sum: "$amount" },
-          count: { $sum: 1 },
-        },
-      },
-
-      { $sort: totalAmount - 1 },
-    ]);
-
-    res.status(200).json({ success: true, data: totalsByCategory });
-  } catch (error) {
-    res.status(500).json({
-      succses: false,
-      message: "Error fetching category totals",
-      error: error.message,
-    });
-  }
 });
 
 module.exports = router;
