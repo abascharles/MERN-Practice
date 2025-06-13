@@ -27,7 +27,7 @@ router.get("/total-by-category", async (req, res) => {
     res.status(200).json({ success: true, data: totalsByCategory });
   } catch (error) {
     res.status(500).json({
-      succses: false,
+      success: false,
       message: "Error fetching category totals",
       error: error.message,
     });
