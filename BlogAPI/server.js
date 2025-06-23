@@ -5,7 +5,6 @@ const postRoutes = require('./routes/routes');
 //Create express server and middleware
 const app = express();
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 const mongoUri = 'mongodb://localhost:27017/postsdb';
 const port = 3000;
