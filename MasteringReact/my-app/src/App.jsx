@@ -1,15 +1,11 @@
-import Header from './Header.jsx';
-import Footer from './Footer.jsx';
-import Food from './Food.jsx';
-import Card from './Card.jsx';
+import Student from './Student.jsx';
 
 function App() {
   return (
     <div>
-      <Header />
-      <Food />
-      <Card />
-      <Footer />
+      <Student name="Spongebob" age={30} isStudent={true} />
+      <Student name="Patrick" age={42} isStudent={false} />
+      <Student name="Larry" />
     </div>
   );
 }
