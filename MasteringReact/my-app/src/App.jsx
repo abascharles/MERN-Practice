@@ -1,7 +1,7 @@
-import Button from './Button.jsx';
+import MyComponent from './MyComponents.jsx';
 
 function App() {
-  return <Button />;
+  return <MyComponent />;
 }
 
 export default App;
