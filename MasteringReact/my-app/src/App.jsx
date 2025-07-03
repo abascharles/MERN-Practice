@@ -1,8 +1,9 @@
 import Header from './Header';
+import MyComponent from './MyComponent';
 function App() {
   return (
     <div>
-      <Header />
+      <MyComponent />
     </div>
   );
 }
