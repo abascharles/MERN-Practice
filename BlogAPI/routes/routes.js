@@ -1,5 +1,5 @@
 //importing the model
-const post = require('../models/post');
+
 const Post = require('../models/post');
 const express = require('express');
 const router = express.Router();
